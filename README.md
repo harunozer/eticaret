@@ -1,4 +1,7 @@
 # eticaret
+Developer ortamı için
+HelperLayer/Consts.cs de ConnectionString düzenlenir ve proje çalıştırılır.
+
 Mvc Core ve EntityFramework Core ile e-ticaret yapısı.
 
 DataAccessLayer
