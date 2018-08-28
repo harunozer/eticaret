@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{CD997EBB-21F9-4604-9284-86BC60AB166C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{CD997EBB-21F9-4604-9284-86BC60AB166C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperLayer", "HelperLayer\HelperLayer.csproj", "{9F75417C-9153-420A-A7CB-E71B17B13D08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelperLayer", "HelperLayer\HelperLayer.csproj", "{9F75417C-9153-420A-A7CB-E71B17B13D08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wwwAdmin", "wwwAdmin\wwwAdmin.csproj", "{FFD772E0-F31A-4329-8911-0AAE11E07F59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwwAdmin", "wwwAdmin\wwwAdmin.csproj", "{FFD772E0-F31A-4329-8911-0AAE11E07F59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wwwSite", "wwwSite\wwwSite.csproj", "{D72973E9-BF8B-47F4-9965-4B7E527FAD4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwwSite", "wwwSite\wwwSite.csproj", "{D72973E9-BF8B-47F4-9965-4B7E527FAD4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{21D51008-89A2-40A2-827F-EB08D1605837}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

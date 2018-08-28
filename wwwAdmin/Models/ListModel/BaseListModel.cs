@@ -10,6 +10,11 @@ namespace wwwAdmin.Models.ListModel
 {
     public class BaseListModel<T> : IDisposable
     {
+        //TODO: global filtre kaydetme yapılacak.
+        //Db de Filters tablosu açılır ID - User - ListName - FiltersName - Data
+        //Liste formuna "Filtre Kaydet" butonu eklenir. (popup ile isim istenir, ajax ile çalışır)
+        //Listelere global isim verilir, Filter listesi json serilize olarak Data alanına basılır. (seçili value değerleri ile)
+        //Kayıtlı filtre varsa filtre formuna selectbox eklenir
         public bool InsertPermission { get; set; }
 
         public List<T> DataList { get; set; }
