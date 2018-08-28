@@ -1,0 +1,25 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Kullanıcı Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kullanıcı Detay</h2>
+
+ID:@Model.ID <br />
+Ad:@Model.Name <br />
+Soyad:@Model.Surname <br />
+Email:@Model.EMail <br />
+Gsm:@Model.Gsm <br />
+Şifre:@Model.Password <br />
+Rol:@Model.UserRole.RoleName <br />
+Son Login IP:@Model.LastLoginIP <br />
+Son Login Zamanı:@Model.LastLoginTime <br />
+Son Logout Zamanı:@Model.LastLogoutTime <br />
+Login Sayısı:@Model.LoginCount <br />
+Online:@(Model.IsLogin ? "Evet" : "Hayır") <br />
+
+@{Html.RenderPartial("~/Views/Partials/PartialViewBaseModel.cshtml", Model);}
+
+
+<a asp-controller="User" asp-action="Index">Listeye Dön</a>

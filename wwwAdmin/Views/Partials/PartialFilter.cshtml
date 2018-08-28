@@ -1,0 +1,123 @@
+﻿@model BaseListPartialModel
+@{
+    Layout = null;
+}
+
+
+<script type="text/javascript" language="javascript">
+    var sortCol = "@Model.SortField";
+    var sortType = "@Model.SortType";
+
+    function FilterReload(pn) {
+        var filterQS = "?";
+        var href = window.location.pathname;
+
+        jQuery(".filter_input").each(function () {
+            var elm = jQuery(this);
+            var nodeName = elm.prop('nodeName');
+            var type = elm.attr("type");
+            var name = elm.attr("name");
+
+            var val = "";
+            if (type != "radio" || (type == "radio" && elm.is(":checked"))) {
+                val = elm.val();
+            }
+
+            if (val)
+                filterQS = filterQS + name + "=" + val + "&";
+
+        });
+
+        href = href + filterQS;
+
+        if (pn)
+            href = href + "@Model.ActivePageNumberName" + "=" + pn + "&";
+
+        if (sortCol != "" && sortType != "")
+            href = href + "@Model.SortFieldName" + "=" + sortCol + "&@Model.SortTypeName" + "=" + sortType;
+
+        window.location.href = href;
+    }
+
+    jQuery(document).ready(function () {
+        //Click Reload event
+        jQuery(".orderspan").click(function () {
+
+            var elm = jQuery(this);
+            var colName = elm.attr("colname");
+            if (!colName) return;
+            var sortType_ = elm.hasClass("asc") == true ? "desc" : "asc";
+
+            sortCol = colName;
+            sortType = sortType_;
+            FilterReload();
+        });
+
+        //PageLoad icon
+        jQuery(".orderspan[colname='" + sortCol + "']").addClass(sortType);
+    });
+</script>
+@if (Model.PageCount > 1)
+{
+    <div id="list_pager">
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <a href="javascript:void(0);" onclick="FilterReload(@i);" class="@(i == Model.ActivePageNumber ? "active" : "")">@i</a>
+        }
+    </div>
+}
+
+@if (Model.Filters.Count > 0)
+{
+    <div id="filters_container">
+        @foreach (var item in Model.Filters)
+        {
+            @if (item.FilterInputType == ListFilterInputType.Textbox)
+            {
+                <div class="filter_item filter_item_textbox">
+                    <div class="filter_item_label">@item.LabelName</div>
+                    <div class="filter_item_input">
+                        <input class="filter_input" type="@item.HtmlInputType" name="@item.FilterName" id="@item.FilterName" value="@item.FilterValue1" />
+                        @if (item.FilterType == ListFilterType.Between)
+                        {
+                            <input class="filter_input" type="@item.HtmlInputType" name="@item.FilterName2" id="@item.FilterName2" value="@item.FilterValue2" />
+                        }
+                    </div>
+                </div>
+            }
+            else if (item.FilterInputType == ListFilterInputType.Radio && item.InputValues.Count > 0)
+            {
+                <div class="filter_item filter_item_radio">
+                    <div class="filter_item_label">@item.LabelName</div>
+                    <div class="filter_item_input">
+                        @foreach (var ValueItem in item.InputValues)
+                        {
+                            <label for="@item.FilterName">@ValueItem.Text</label>
+                            <input class="filter_input" type="radio" name="@item.FilterName" value="@ValueItem.Value" @(ValueItem.Text == item.FilterValue1 ? "checked=checked" : "") />
+                        }
+                    </div>
+                </div>
+            }
+            else if (item.FilterInputType == ListFilterInputType.ListBox && item.InputValues.Count > 0)
+            {
+                <div class="filter_item filter_item_listbox">
+                    <div class="filter_item_label">@item.LabelName</div>
+                    <div class="filter_item_input">
+
+                        <select name="@item.FilterName" asp-for="@item.FilterValue1" id="@item.FilterName" class="filter_input">
+                            <option value="">Tümü</option>
+                            @foreach (var ValueItem in item.InputValues)
+                            {
+                                <option value="@ValueItem.Value">@ValueItem.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
+        }
+        <div class="filter_buttons">
+            <a href="javascript:void(0);" onclick="FilterReload();">Filtrele</a>
+            <a href="?reset=all">Temizle</a>
+        </div>
+    </div>
+}

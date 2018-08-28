@@ -1,0 +1,47 @@
+﻿@model CancelListModel
+
+@{
+    ViewData["Title"] = "İptal Nedeni Listesi";
+}
+
+<div>
+    <h2>İptal Nedeni Listesi</h2>
+    @if (Model.InsertPermission)
+    {<a asp-controller="Cancel" asp-action="form">İptal Nedeni Ekle</a>}
+</div>
+
+@{Html.RenderPartial("~/Views/Partials/PartialFilter.cshtml", Model.ListProps);}
+
+<table>
+    <tr>
+        <th>ID <span class="orderspan" colname="ID">X</span></th>
+        <th>İptal Nedeni Adı<span class="orderspan" colname="CancelName">X</span></th>
+        <th>İptal Nedeni</th>
+        <th>&nbsp;</th>
+    </tr>
+    @if (Model.DataList.Count() == 0)
+    {
+        <tr>
+            <td colspan="4">Kayıt Bulunamadı.</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var cancel in Model.DataList)
+        {
+            <tr>
+                <td>@cancel.ID</td>
+                <td>@cancel.CancelName</td>
+                <td>@(cancel.CancelObj != null ? cancel.CancelObj.CancelName : "")</td>
+                <td>
+                    @if (cancel.Permissions.Update)
+                    {<a asp-action="form" asp-route-id="@cancel.ID">Düzenle</a>}
+                    @if (cancel.Permissions.Delete)
+                    {<a asp-action="delete" asp-route-id="@cancel.ID" class="button_delete">Sil</a>}
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+

@@ -1,0 +1,12 @@
+﻿@model HelperLayer.Exceptions.ExceptionDetail
+
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Error</h2>
+
+<h2>@Model.Message</h2>
+<h2>@Model.Path</h2>
+<h2>@Model.StackTrace</h2>

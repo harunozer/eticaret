@@ -1,0 +1,18 @@
+﻿@model BaseModel
+
+@{
+    Layout = null;
+}
+
+Kayıt Eden: @Model.CreatedUser.Name @Model.CreatedUser.Surname <br />
+Kayıt Zamanı: @Model.CreateTime <br />
+
+Düzenleyen: @if (Model.UpdatedUser != null)
+{@Model.UpdatedUser.Name @Model.UpdatedUser.Surname} <br />
+Düzenleme Zamanı: @Model.UpdateTime <br />
+
+İptal Eden: @if (Model.CanceledUser != null)
+{@Model.CanceledUser.Name @Model.CanceledUser.Surname} <br />
+İptal Zamanı: @Model.CancelTime <br />
+İptal Nedeni: @if (Model.Cancel != null)
+{@Model.Cancel.CancelName} <br />

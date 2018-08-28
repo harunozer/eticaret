@@ -1,0 +1,37 @@
+﻿@model LoginForm
+@{ 
+    Layout = null;
+    string pass = "";
+
+    if (Model != null)
+    {
+        pass = String.IsNullOrEmpty(Model.Password) ? "" : Model.Password.ToString();
+    }
+}
+<h1>Login Form</h1>
+<form method="post">
+    @if (ViewData["Login-err"] != null)
+    {
+        <div id="login_error">@ViewData["Login-err"].ToString()</div>
+
+    }
+    <div class="form-group">
+        <label asp-for="EMail">Email</label>
+        <input asp-for="EMail" class="form-control" />
+        <span asp-validation-for="EMail" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">Password</label>
+        <input asp-for="@Model.Password" value="@pass" type="password"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RememberMe">Beni Hatırla</label>
+        <input asp-for="RememberMe" type="checkbox" class="form-control" />
+    </div>
+
+    <input type="submit" value="Submit" />
+
+</form>
