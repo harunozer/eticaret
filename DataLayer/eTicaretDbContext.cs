@@ -167,7 +167,7 @@ namespace DataLayer
                     }
                 }
             }
-
+            //TODO: ElasticSearch vb. ile değişiklikleri logla
             return base.SaveChanges();
         }
     }
