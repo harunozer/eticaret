@@ -4,7 +4,8 @@ namespace DataLayer.ValidationAttributes
 {
     public class ValidationStringLength : StringLengthAttribute
     {
-        public ValidationStringLength(int maximumLength, string alias = null) : base(maximumLength)
+
+        public ValidationStringLength(int maximumLength) : base(maximumLength)
         {
         }
 
@@ -14,7 +15,7 @@ namespace DataLayer.ValidationAttributes
                 return ValidationResult.Success;
 
             if (value.ToString().Length > MaximumLength)
-                return new ValidationResult("Max " + MaximumLength + " karakter olmalıdır.");
+                return new ValidationResult("En fazla " + MaximumLength + " karakter olmalıdır.");
 
             return ValidationResult.Success;
 

@@ -2,9 +2,9 @@
 
 namespace DataLayer.ValidationAttributes
 {
-    public class ValidationPass : ValidationAttribute
+    public class ValidationPass : StringLengthAttribute
     {
-        public ValidationPass()
+        public ValidationPass() : base(20)
         {
 
         }

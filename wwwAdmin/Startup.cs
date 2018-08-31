@@ -32,6 +32,7 @@ namespace wwwAdmin
             services.AddScoped<CancelService>();
             services.AddScoped<UserRoleService>();
             services.AddScoped<UserService>();
+            services.AddScoped<CustomerService>();
 
             services.AddMvc();
             services.AddRouting();

@@ -31,11 +31,11 @@ Delete silinecek kaydın ID si parametre olarak alınır. get ile kayıt okunur 
 
 BaseServis den türetilen diğer servislerde getBaseQuery ve getValidationError metotları override edilir. Standart permission yapısına ek olarak yetki kontrolleri varsa ilgili permission kontrolü metodu da override edilir. CRUD işlemleri standart yapıda değil ise (CancelService deki gibi) ilgili metot override edilir.
 
-HelperLayer
+**HelperLayer**
 
 DataLayer ve www projelerinde ortak kullanılan Permission, Exception ve Web metodları tanımlanır. Projede ki sabitler consts.cs de tanımlanır.
 
-wwwAdmin
+**wwwAdmin**
 
 Yönetim paneli sitesidir. Kod içinde yakalanmayan exceptionlar /Error sayfasına yönlendirilir.
 

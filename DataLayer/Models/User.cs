@@ -21,11 +21,11 @@ namespace DataLayer.Models
         public string Surname { get; set; }
 
         [ValidationRequired]
-        [ValidationStringLength(50)]
         [ValidationEmail]
         public string EMail { get; set; }
 
         [ValidationPass]
+        [ValidationRequired]
         public string Password { get; set; }
 
         [ValidationRequired]
@@ -41,6 +41,7 @@ namespace DataLayer.Models
         public bool IsLogin { get; set; }
 
         [ValidationGsm]
+        [ValidationStringLength(20)]
         public string Gsm { get; set; }
     }
 }

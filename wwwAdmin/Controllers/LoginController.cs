@@ -36,10 +36,6 @@ namespace wwwAdmin.Controllers
                     ViewData["Login-err"] = "Kullanıcı Bulunamadı";
                 }
             }
-            else
-            {
-                //ValidationErrors
-            }
 
             //LoginFormAction
             return View(model);

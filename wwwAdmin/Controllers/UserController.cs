@@ -34,7 +34,6 @@ namespace wwwAdmin.Controllers
                 ColName = "ID",
                 LabelName = "ID",
                 FilterDataType = ListFilterDataType.Numeric,
-                FilterInputType = ListFilterInputType.Textbox,
                 FilterType = ListFilterType.Between
             };
             model.ListProps.Filters.Add(itemID);
@@ -43,8 +42,6 @@ namespace wwwAdmin.Controllers
             {
                 ColName = "Name",
                 LabelName = "Ad",
-                FilterDataType = ListFilterDataType.String,
-                FilterInputType = ListFilterInputType.Textbox,
                 FilterType = ListFilterType.StartsWith
             };
             model.ListProps.Filters.Add(itemName);
@@ -78,7 +75,6 @@ namespace wwwAdmin.Controllers
                 ColName = "CreateTime",
                 LabelName = "Kayıt Tarihi",
                 FilterDataType = ListFilterDataType.Date,
-                FilterInputType = ListFilterInputType.Textbox,
                 FilterType = ListFilterType.Between
             };
             model.ListProps.Filters.Add(itemCreateTime);

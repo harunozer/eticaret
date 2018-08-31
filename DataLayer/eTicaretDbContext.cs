@@ -15,12 +15,14 @@ namespace DataLayer
 
         public void MiggrateDb()
         {
-            Database.Migrate();
+            this.Database.Migrate();
         }
 
         public DbSet<Cancel> Cancel { get; set; }
         public DbSet<UserRole> UserRol { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+
 
         public User CurrentUser { get; set; }
         public int CurrentUserID { get { return CurrentUser.ID; } }
@@ -75,6 +77,10 @@ namespace DataLayer
 
             modelBuilder.Entity<UserRole>()
                 .HasIndex(p => new { p.RoleName })
+                .IsUnique(true);
+
+            modelBuilder.Entity<Customer>()
+                .HasIndex(p => new { p.EMail })
                 .IsUnique(true);
 
             modelBuilder.Entity<UserRole>().HasData(new UserRole[]

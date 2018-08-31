@@ -12,8 +12,8 @@ namespace wwwAdmin.Models.ListModel
         public string FilterName2 { get { return "xflt2_" + ColName; } }
 
         public ListFilterType FilterType { get; set; }
-        public ListFilterDataType FilterDataType { get; set; }
-        public ListFilterInputType FilterInputType { get; set; }
+        public ListFilterDataType FilterDataType { get; set; } = ListFilterDataType.String;
+        public ListFilterInputType FilterInputType { get; set; } = ListFilterInputType.Textbox;
 
         //parametre
         public string FilterValue1 { get; set; }

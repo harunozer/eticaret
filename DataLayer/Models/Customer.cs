@@ -6,6 +6,8 @@ namespace DataLayer.Models
 {
     public class Customer : BaseModel
     {
+        public DataPermissions Permissions { get; set; } = new DataPermissions();
+
         [ValidationRequired]
         [ValidationStringLength(50)]
         public string Name { get; set; }
@@ -16,10 +18,10 @@ namespace DataLayer.Models
 
         [ValidationEmail]
         [ValidationRequired]
-        [ValidationStringLength(50)]
         public string EMail { get; set; }
 
         [ValidationPass]
+        [ValidationRequired]
         public string Password { get; set; }
 
         [ValidationGsm]
@@ -29,5 +31,11 @@ namespace DataLayer.Models
 
         [ValidationGender]
         public string Gender { get; set; }
+
+        public string LastLoginIP { get; set; }
+        public DateTime? LastLoginTime { get; set; }
+        public DateTime? LastLogoutTime { get; set; }
+        public int LoginCount { get; set; }
+        public bool IsLogin { get; set; }
     }
 }

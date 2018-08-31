@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace DataLayer.ValidationAttributes
 {
-    public class ValidationEmail : ValidationAttribute
+    public class ValidationEmail : StringLengthAttribute
     {
-        public ValidationEmail()
+        public ValidationEmail() : base(100)
         {
 
         }

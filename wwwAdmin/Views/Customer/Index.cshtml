@@ -1,0 +1,52 @@
+﻿@model CustomerListModel
+
+
+@{
+    ViewData["Title"] = "Üye Listesi";
+}
+
+<div>
+    <h2>Üye Listesi</h2>
+    @if (Model.InsertPermission)
+    {<a asp-controller="Customer" asp-action="form">Üye Ekle</a>}
+</div>
+
+@{Html.RenderPartial("~/Views/Partials/PartialFilter.cshtml", Model.ListProps);}
+
+<table>
+    <tr>
+        <th>ID <span class="orderspan" colname="ID">X</span></th>
+        <th>Ad <span class="orderspan" colname="Name">X</span></th>
+        <th>Soyad <span class="orderspan" colname="Surname">X</span></th>
+        <th>E-Mail <span class="orderspan" colname="EMail">X</span></th>
+        <th>Online <span class="orderspan" colname="IsLogin">X</span></th>
+        <th>&nbsp;</th>
+    </tr>
+    @if (Model.DataList.Count() == 0)
+    {
+        <tr>
+            <td colspan="6">Kayıt Bulunamadı.</td>
+        </tr>
+    }
+    else
+    {
+        foreach (var customer in Model.DataList)
+        {
+            <tr>
+                <td>@customer.ID</td>
+                <td>@customer.Name</td>
+                <td>@customer.Surname</td>
+                <td>@customer.EMail</td>
+                <td>@(customer.IsLogin ? "Evet" : "Hayır")</td>
+                <td>
+                    @if (customer.Permissions.Update)
+                    {<a asp-action="form" asp-route-id="@customer.ID">Düzenle</a>}
+                    @if (customer.Permissions.View)
+                    {<a asp-action="view" asp-route-id="@customer.ID">Detay</a>}
+                    @if (customer.Permissions.Delete)
+                    {<a asp-action="delete" asp-route-id="@customer.ID" class="button_delete">Sil</a>}
+                </td>
+            </tr>
+        }
+    }
+</table>

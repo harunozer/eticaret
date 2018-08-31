@@ -11,6 +11,7 @@ namespace HelperLayer.Permissions
         Cancel = 1,
         User = 2,
         UserRole = 3,
-        UserRolePermission = 4
+        UserRolePermission = 4,
+        CustomerPermission = 5
     }
 }

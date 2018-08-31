@@ -2,9 +2,9 @@
 
 namespace DataLayer.ValidationAttributes
 {
-    public class ValidationGender:ValidationAttribute
+    public class ValidationGender : StringLengthAttribute
     {
-        public ValidationGender()
+        public ValidationGender() : base(1)
         {
 
         }
