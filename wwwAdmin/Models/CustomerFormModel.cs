@@ -5,9 +5,8 @@ using wwwAdmin.Models.FormModel;
 
 namespace wwwAdmin.Models
 {
-    public class CustomerFormModel : BaseFormModel
+    public class CustomerFormModel : BaseFormModel<Customer>
     {
-        public Customer Data { get; set; }
 
         public List<Cancel> CancelList { get; set; }
 

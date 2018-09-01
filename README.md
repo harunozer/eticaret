@@ -43,9 +43,12 @@ Yönetim paneli sitesidir. Kod içinde yakalanmayan exceptionlar /Error sayfası
 
 **Models** klasöründe form ve list sayfalarında kullanılan modeller tanımlanır.
 
-Bütün Controller sınıfları BaseController sınıfından türetilir. IDisposible değişkeni vardır. Setlendiğinde request bittikten sonra dispose çalıştırılır ve view da kullanılan modelin dispose metodu çalıştırılmış olur. 
+Standart yapıdaki modele sahip yapılar için Controller sınıfları BaseModelController sınıfından türetilir. 
+bindFilterList, bindFormModel, getUpdatedData metotları override edilir.
+IDisposible değişkeni vardır. Setlendiğinde request bittikten sonra dispose çalıştırılır ve view da kullanılan modelin dispose metodu çalıştırılmış olur. 
 
-Controller constructor da kullanılacak servisler parametre olarak alınıp readonly değişkenlere atılır. Index metodu List sayfalarıdır. Form metodları Insert ve Update sayfalarıdır. Detay istekleri View, silme istekleri Delete metotlarıdır.
+Controller constructor da kullanılacak servisler parametre olarak alınıp readonly değişkenlere atılır. 
+Index metodu List sayfalarıdır. Form metodları Insert ve Update sayfalarıdır. Detay istekleri View, silme istekleri Delete metotlarıdır.
 
 **List Sayfaları:**
 

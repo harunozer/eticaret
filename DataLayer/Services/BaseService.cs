@@ -87,7 +87,7 @@ namespace DataLayer.Services
             return (data.GetType().GetProperty(PropertyName) != null);
         }
 
-        private DataPermissions GetDataPermission(T data)
+        public DataPermissions GetDataPermission(T data)
         {
             //Permissions property varmı kontrolü yap.
             if (!HasProperty(data, "Permissions"))

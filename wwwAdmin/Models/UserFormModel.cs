@@ -5,10 +5,8 @@ using wwwAdmin.Models.FormModel;
 
 namespace wwwAdmin.Models
 {
-    public class UserFormModel : BaseFormModel
+    public class UserFormModel : BaseFormModel<User>
     {
-        public User Data { get; set; }
-
         public List<UserRole> RoleList { get; set; }
         public List<Cancel> CancelList { get; set; }
 

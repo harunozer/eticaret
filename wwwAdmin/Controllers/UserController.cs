@@ -1,34 +1,25 @@
 ﻿using DataLayer.Models;
 using DataLayer.Services;
-using HelperLayer.Exceptions;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using wwwAdmin.Models;
-using wwwAdmin.Models.FormModel;
 using wwwAdmin.Models.ListModel;
 
 namespace wwwAdmin.Controllers
 {
-    public class UserController : BaseController
+    public class UserController : BaseModelController<User, UserService, UserFormModel, UserListModel>
     {
-        readonly UserService userService;
         readonly UserRoleService userRoleService;
         readonly CancelService cancelService;
 
-        public UserController(UserService userService_, UserRoleService userRoleService_, CancelService cancelService_)
+        public UserController(UserService userService_, UserRoleService userRoleService_, CancelService cancelService_) : base(userService_)
         {
-            userService = userService_;
             userRoleService = userRoleService_;
             cancelService = cancelService_;
         }
 
-        [HttpGet]
-        public IActionResult Index()
+        public override void bindFilterList(UserListModel model)
         {
-            UserListModel model = new UserListModel();
-            model.InsertPermission = userService.CheckInsertPermission();
-
             ListFilterItem itemID = new ListFilterItem
             {
                 ColName = "ID",
@@ -78,93 +69,22 @@ namespace wwwAdmin.Controllers
                 FilterType = ListFilterType.Between
             };
             model.ListProps.Filters.Add(itemCreateTime);
-
-            model.BuildQuery(HttpContext, userService.getListQuery());
-            userService.BindPermissionsList(model.DataList);
-
-            base.Model_ = model;
-            return View(model);
         }
 
-        [HttpGet]
-        public IActionResult Form(int? id)
+        public override User getUpdatedData(UserFormModel model)
         {
-            //UserAdd - UserUpdate Form
-            UserFormModel model = new UserFormModel();
-            model.FormType = id != null ? FormType.Update : FormType.Insert;
-
-            if (model.FormType == FormType.Insert)
-            {
-                if (!userService.CheckInsertPermission())
-                    throw new PermissionException();
-
-            }
-            else if (model.FormType == FormType.Update)
-            {
-                model.Data = userService.Get((int)id);
-                if (!model.Data.Permissions.Update)
-                    throw new PermissionException();
-            }
-
-            BindFormModel(model);
-            return View(model);
+            User updatedData = service.Get(model.Data.ID);
+            updatedData.Name = model.Data.Name;
+            updatedData.Surname = model.Data.Surname;
+            updatedData.EMail = model.Data.EMail;
+            updatedData.Gsm = model.Data.Gsm;
+            updatedData.Password = model.Data.Password;
+            updatedData.UserRoleID = model.Data.UserRoleID;
+            updatedData.CancelID = model.Data.CancelID;
+            return updatedData;
         }
 
-        [HttpPost]
-        public IActionResult Form(UserFormModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                BindFormModel(model);
-                return View(model);
-            }
-
-            model.FormType = model.Data.ID == 0 ? FormType.Insert : FormType.Update;
-            try
-            {
-                if (model.FormType == FormType.Insert)
-                {
-                    userService.Add(model.Data);
-                }
-                else if (model.FormType == FormType.Update)
-                {
-                    User updatedData = userService.Get(model.Data.ID);
-                    updatedData.Name = model.Data.Name;
-                    updatedData.Surname = model.Data.Surname;
-                    updatedData.EMail = model.Data.EMail;
-                    updatedData.Gsm = model.Data.Gsm;
-                    updatedData.Password = model.Data.Password;
-                    updatedData.UserRoleID = model.Data.UserRoleID;
-                    updatedData.CancelID = model.Data.CancelID;
-
-                    userService.Update(updatedData);
-                }
-            }
-            catch (ValidationException exValidation)
-            {
-                setErrorMesaage(exValidation.Message);
-                BindFormModel(model);
-                return View(model);
-            }
-
-            setSuccessMesaage("Kayıt başarılı");
-            return RedirectToAction("Index", "User");
-        }
-
-        [HttpGet]
-        public IActionResult View(int id)
-        {
-            return View(userService.Get(id));
-        }
-
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            userService.Delete(id);
-            setSuccessMesaage("Kayıt silindi");
-            return RedirectToAction("Index", "User");
-        }
-        private void BindFormModel(UserFormModel model)
+        public override void bindFormModel(UserFormModel model)
         {
             model.RoleList = userRoleService.getList();
             model.CancelList = cancelService.getList();

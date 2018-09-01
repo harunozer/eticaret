@@ -5,7 +5,7 @@ using System;
 
 namespace wwwAdmin.Controllers
 {
-    public class ErrorController : Controller
+    public class ErrorController : BaseController
     {
         public IActionResult Index()
         {
