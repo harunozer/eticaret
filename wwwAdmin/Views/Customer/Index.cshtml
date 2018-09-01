@@ -13,24 +13,23 @@
 
 @{Html.RenderPartial("~/Views/Partials/PartialFilter.cshtml", Model.ListProps);}
 
-<table>
-    <tr>
-        <th>ID <span class="orderspan" colname="ID">X</span></th>
-        <th>Ad <span class="orderspan" colname="Name">X</span></th>
-        <th>Soyad <span class="orderspan" colname="Surname">X</span></th>
-        <th>E-Mail <span class="orderspan" colname="EMail">X</span></th>
-        <th>Online <span class="orderspan" colname="IsLogin">X</span></th>
-        <th>&nbsp;</th>
-    </tr>
-    @if (Model.DataList.Count() == 0)
-    {
+
+@if (Model.DataList.Count() == 0)
+{
+    <div class="norecordlist">Kayıt Bulunamadı</div>
+}
+else
+{
+    <table>
         <tr>
-            <td colspan="6">Kayıt Bulunamadı.</td>
+            <th>ID <span class="orderspan" colname="ID">X</span></th>
+            <th>Ad <span class="orderspan" colname="Name">X</span></th>
+            <th>Soyad <span class="orderspan" colname="Surname">X</span></th>
+            <th>E-Mail <span class="orderspan" colname="EMail">X</span></th>
+            <th>Online <span class="orderspan" colname="IsLogin">X</span></th>
+            <th>&nbsp;</th>
         </tr>
-    }
-    else
-    {
-        foreach (var customer in Model.DataList)
+        @foreach (var customer in Model.DataList)
         {
             <tr>
                 <td>@customer.ID</td>
@@ -48,5 +47,5 @@
                 </td>
             </tr>
         }
-    }
-</table>
+    </table>
+}

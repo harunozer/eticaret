@@ -33,6 +33,7 @@ namespace wwwAdmin
             services.AddScoped<UserRoleService>();
             services.AddScoped<UserService>();
             services.AddScoped<CustomerService>();
+            services.AddScoped<CountryService>();
 
             services.AddMvc();
             services.AddRouting();
@@ -46,7 +47,7 @@ namespace wwwAdmin
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, eTicaretDbContext _context)
         {
-            if (env.IsDevelopment() && false)
+            if (env.IsDevelopment()) //&& false
             {
                 app.UseDeveloperExceptionPage();
             }

@@ -1,0 +1,14 @@
+﻿@model Country
+@{
+    ViewData["Title"] = "Ülke Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ülke Detay</h2>
+
+ID:@Model.ID <br />
+Ülke Ad:@Model.CountryName <br />
+
+@{Html.RenderPartial("~/Views/Partials/PartialViewBaseModel.cshtml", Model);}
+
+<a asp-controller="Country" asp-action="Index">Listeye Dön</a>

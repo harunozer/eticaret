@@ -22,7 +22,9 @@ namespace DataLayer
         public DbSet<UserRole> UserRol { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Customer> Customer { get; set; }
-
+        public DbSet<Country> Country { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<District> District { get; set; }
 
         public User CurrentUser { get; set; }
         public int CurrentUserID { get { return CurrentUser.ID; } }

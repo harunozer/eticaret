@@ -45,6 +45,84 @@ namespace DataLayer.Migrations
                     );
                 });
 
+            modelBuilder.Entity("DataLayer.Models.City", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CancelID");
+
+                    b.Property<DateTime?>("CancelTime");
+
+                    b.Property<int?>("CanceledBy");
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int>("CounrtyID");
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<int>("CreatedBy");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<int?>("UpdatedBy");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CancelID");
+
+                    b.HasIndex("CanceledBy");
+
+                    b.HasIndex("CounrtyID");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("City");
+                });
+
+            modelBuilder.Entity("DataLayer.Models.Country", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CancelID");
+
+                    b.Property<DateTime?>("CancelTime");
+
+                    b.Property<int?>("CanceledBy");
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<int>("CreatedBy");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<int?>("UpdatedBy");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CancelID");
+
+                    b.HasIndex("CanceledBy");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("Country");
+                });
+
             modelBuilder.Entity("DataLayer.Models.Customer", b =>
                 {
                     b.Property<int>("ID")
@@ -113,6 +191,45 @@ namespace DataLayer.Migrations
                     b.HasIndex("UpdatedBy");
 
                     b.ToTable("Customer");
+                });
+
+            modelBuilder.Entity("DataLayer.Models.District", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CancelID");
+
+                    b.Property<DateTime?>("CancelTime");
+
+                    b.Property<int?>("CanceledBy");
+
+                    b.Property<int>("CityID");
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<int>("CreatedBy");
+
+                    b.Property<string>("DistrictName");
+
+                    b.Property<DateTime?>("UpdateTime");
+
+                    b.Property<int?>("UpdatedBy");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CancelID");
+
+                    b.HasIndex("CanceledBy");
+
+                    b.HasIndex("CityID");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("District");
                 });
 
             modelBuilder.Entity("DataLayer.Models.User", b =>
@@ -184,9 +301,9 @@ namespace DataLayer.Migrations
                     b.ToTable("User");
 
                     b.HasData(
-                        new { ID = 1, CreateTime = new DateTime(2018, 9, 1, 0, 8, 47, 661, DateTimeKind.Local), CreatedBy = 1, EMail = "developer@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Developer", Password = "12345", Surname = "Kullanıcı", UserRoleID = 0 },
-                        new { ID = 2, CancelID = -1, CancelTime = new DateTime(2018, 9, 1, 0, 8, 47, 662, DateTimeKind.Local), CanceledBy = 1, CreateTime = new DateTime(2018, 9, 1, 0, 8, 47, 662, DateTimeKind.Local), CreatedBy = 1, EMail = "info@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Site", Password = "s21/()d52^43^+!%&", Surname = "Kullanıcı", UserRoleID = -1 },
-                        new { ID = 3, CreateTime = new DateTime(2018, 9, 1, 0, 8, 47, 662, DateTimeKind.Local), CreatedBy = 1, EMail = "admin@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Admin", Password = "12345", Surname = "Kullanıcı", UserRoleID = 1 }
+                        new { ID = 1, CreateTime = new DateTime(2018, 9, 1, 17, 32, 58, 532, DateTimeKind.Local), CreatedBy = 1, EMail = "developer@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Developer", Password = "12345", Surname = "Kullanıcı", UserRoleID = 0 },
+                        new { ID = 2, CancelID = -1, CancelTime = new DateTime(2018, 9, 1, 17, 32, 58, 533, DateTimeKind.Local), CanceledBy = 1, CreateTime = new DateTime(2018, 9, 1, 17, 32, 58, 533, DateTimeKind.Local), CreatedBy = 1, EMail = "info@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Site", Password = "s21/()d52^43^+!%&", Surname = "Kullanıcı", UserRoleID = -1 },
+                        new { ID = 3, CreateTime = new DateTime(2018, 9, 1, 17, 32, 58, 533, DateTimeKind.Local), CreatedBy = 1, EMail = "admin@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Admin", Password = "12345", Surname = "Kullanıcı", UserRoleID = 1 }
                     );
                 });
 
@@ -225,6 +342,57 @@ namespace DataLayer.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
+            modelBuilder.Entity("DataLayer.Models.City", b =>
+                {
+                    b.HasOne("DataLayer.Models.Cancel", "Cancel")
+                        .WithMany()
+                        .HasForeignKey("CancelID")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "CanceledUser")
+                        .WithMany()
+                        .HasForeignKey("CanceledBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CounrtyID")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "UpdatedUser")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("DataLayer.Models.Country", b =>
+                {
+                    b.HasOne("DataLayer.Models.Cancel", "Cancel")
+                        .WithMany()
+                        .HasForeignKey("CancelID")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "CanceledUser")
+                        .WithMany()
+                        .HasForeignKey("CanceledBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "UpdatedUser")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("DataLayer.Models.Customer", b =>
                 {
                     b.HasOne("DataLayer.Models.Cancel", "Cancel")
@@ -235,6 +403,34 @@ namespace DataLayer.Migrations
                     b.HasOne("DataLayer.Models.User", "CanceledUser")
                         .WithMany()
                         .HasForeignKey("CanceledBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "CreatedUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "UpdatedUser")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("DataLayer.Models.District", b =>
+                {
+                    b.HasOne("DataLayer.Models.Cancel", "Cancel")
+                        .WithMany()
+                        .HasForeignKey("CancelID")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.User", "CanceledUser")
+                        .WithMany()
+                        .HasForeignKey("CanceledBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DataLayer.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityID")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DataLayer.Models.User", "CreatedUser")

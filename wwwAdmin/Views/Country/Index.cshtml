@@ -1,17 +1,16 @@
-﻿@model CancelListModel
+﻿@model CountryListModel
 
 @{
-    ViewData["Title"] = "İptal Nedeni Listesi";
+    ViewData["Title"] = "Ülke Listesi";
 }
 
 <div>
-    <h2>İptal Nedeni Listesi</h2>
+    <h2>Ülke Listesi</h2>
     @if (Model.InsertPermission)
-    {<a asp-controller="Cancel" asp-action="form">İptal Nedeni Ekle</a>}
+    {<a asp-controller="Country" asp-action="form">Ülke Ekle</a>}
 </div>
 
 @{Html.RenderPartial("~/Views/Partials/PartialFilter.cshtml", Model.ListProps);}
-
 
 @if (Model.DataList.Count() == 0)
 {
@@ -22,28 +21,26 @@ else
     <table>
         <tr>
             <th>ID <span class="orderspan" colname="ID">X</span></th>
-            <th>İptal Nedeni Adı<span class="orderspan" colname="CancelName">X</span></th>
+            <th>Ülke Adı <span class="orderspan" colname="Name">X</span></th>
             <th>İptal Nedeni</th>
             <th>&nbsp;</th>
         </tr>
         @foreach (var data in Model.DataList)
         {
-
             <tr>
                 <td>@data.ID</td>
-                <td>@data.CancelName</td>
-                <td>@(data.CancelObj != null ? data.CancelObj.CancelName : "")</td>
+                <td>@data.CountryName</td>
+                <td>@(data.Cancel != null ? data.Cancel.CancelName : "")</td>
                 <td>
                     @if (data.Permissions.Update)
                     {<a asp-action="form" asp-route-id="@data.ID">Düzenle</a>}
+                    @if (data.Permissions.View)
+                    {<a asp-action="view" asp-route-id="@data.ID">Detay</a>}
                     @if (data.Permissions.Delete)
                     {<a asp-action="delete" asp-route-id="@data.ID" class="button_delete">Sil</a>}
                 </td>
             </tr>
-
         }
     </table>
-
 }
-
 

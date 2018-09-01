@@ -10,7 +10,7 @@ namespace DataLayer.Services
     public class CustomerService : BaseService<Customer>
     {
         public CustomerService(eTicaretDbContext context, IHttpContextAccessor httpContextAccessor)
-            : base(context, httpContextAccessor, PermissionModulEnum.CustomerPermission) { }
+            : base(context, httpContextAccessor, PermissionModulEnum.Customer) { }
 
         public override IQueryable<Customer> getBaseQuery()
         {

@@ -13,44 +13,43 @@
 
 @{Html.RenderPartial("~/Views/Partials/PartialFilter.cshtml", Model.ListProps);}
 
-<table>
-    <tr>
-        <th>ID <span class="orderspan" colname="ID">X</span></th>
-        <th>Ad <span class="orderspan" colname="Name">X</span></th>
-        <th>Soyad <span class="orderspan" colname="Surname">X</span></th>
-        <th>E-Mail <span class="orderspan" colname="EMail">X</span></th>
-        <th>Rol <span class="orderspan" colname="UserRole">X</span></th>
-        <th>Online <span class="orderspan" colname="IsLogin">X</span></th>
-        <th>&nbsp;</th>
-    </tr>
-    @if (Model.DataList.Count() == 0)
-    {
+
+@if (Model.DataList.Count() == 0)
+{
+    <div class="norecordlist">Kayıt Bulunamadı</div>
+}
+else
+{
+    <table>
         <tr>
-            <td colspan="7">Kayıt Bulunamadı.</td>
+            <th>ID <span class="orderspan" colname="ID">X</span></th>
+            <th>Ad <span class="orderspan" colname="Name">X</span></th>
+            <th>Soyad <span class="orderspan" colname="Surname">X</span></th>
+            <th>E-Mail <span class="orderspan" colname="EMail">X</span></th>
+            <th>Rol <span class="orderspan" colname="UserRole">X</span></th>
+            <th>Online <span class="orderspan" colname="IsLogin">X</span></th>
+            <th>&nbsp;</th>
         </tr>
-    }
-    else
-    {
-        foreach (var user in Model.DataList)
+        @foreach (var data in Model.DataList)
         {
             <tr>
-                <td>@user.ID</td>
-                <td>@user.Name</td>
-                <td>@user.Surname</td>
-                <td>@user.EMail</td>
-                <td>@user.UserRole.RoleName</td>
-                <td>@(user.IsLogin ? "Evet" : "Hayır")</td>
+                <td>@data.ID</td>
+                <td>@data.Name</td>
+                <td>@data.Surname</td>
+                <td>@data.EMail</td>
+                <td>@data.UserRole.RoleName</td>
+                <td>@(data.IsLogin ? "Evet" : "Hayır")</td>
                 <td>
-                    @if (user.Permissions.Update)
-                    {<a asp-action="form" asp-route-id="@user.ID">Düzenle</a>}
-                    @if (user.Permissions.View)
-                    {<a asp-action="view" asp-route-id="@user.ID">Detay</a>}
-                    @if (user.Permissions.Delete)
-                    {<a asp-action="delete" asp-route-id="@user.ID" class="button_delete">Sil</a>}
+                    @if (data.Permissions.Update)
+                    {<a asp-action="form" asp-route-id="@data.ID">Düzenle</a>}
+                    @if (data.Permissions.View)
+                    {<a asp-action="view" asp-route-id="@data.ID">Detay</a>}
+                    @if (data.Permissions.Delete)
+                    {<a asp-action="delete" asp-route-id="@data.ID" class="button_delete">Sil</a>}
                 </td>
             </tr>
         }
-    }
-</table>
+    </table>
+}
 
 
