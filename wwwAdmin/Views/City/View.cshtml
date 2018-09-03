@@ -1,0 +1,15 @@
+﻿@model City
+@{
+    ViewData["Title"] = "Şehir Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Şehir Detay</h2>
+
+ID:@Model.ID <br />
+Şehir Ad:@Model.CityName <br />
+Ülke Ad:@Model.Country.CountryName<br />
+
+@{Html.RenderPartial("~/Views/Partials/PartialViewBaseModel.cshtml", Model);}
+
+<a asp-controller="City" asp-action="Index">Listeye Dön</a>

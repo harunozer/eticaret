@@ -61,7 +61,7 @@ namespace DataLayer.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("CounrtyID");
+                    b.Property<int>("CountryID");
 
                     b.Property<DateTime>("CreateTime");
 
@@ -77,7 +77,7 @@ namespace DataLayer.Migrations
 
                     b.HasIndex("CanceledBy");
 
-                    b.HasIndex("CounrtyID");
+                    b.HasIndex("CountryID");
 
                     b.HasIndex("CreatedBy");
 
@@ -301,9 +301,9 @@ namespace DataLayer.Migrations
                     b.ToTable("User");
 
                     b.HasData(
-                        new { ID = 1, CreateTime = new DateTime(2018, 9, 1, 17, 32, 58, 532, DateTimeKind.Local), CreatedBy = 1, EMail = "developer@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Developer", Password = "12345", Surname = "Kullanıcı", UserRoleID = 0 },
-                        new { ID = 2, CancelID = -1, CancelTime = new DateTime(2018, 9, 1, 17, 32, 58, 533, DateTimeKind.Local), CanceledBy = 1, CreateTime = new DateTime(2018, 9, 1, 17, 32, 58, 533, DateTimeKind.Local), CreatedBy = 1, EMail = "info@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Site", Password = "s21/()d52^43^+!%&", Surname = "Kullanıcı", UserRoleID = -1 },
-                        new { ID = 3, CreateTime = new DateTime(2018, 9, 1, 17, 32, 58, 533, DateTimeKind.Local), CreatedBy = 1, EMail = "admin@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Admin", Password = "12345", Surname = "Kullanıcı", UserRoleID = 1 }
+                        new { ID = 1, CreateTime = new DateTime(2018, 9, 2, 23, 51, 57, 594, DateTimeKind.Local), CreatedBy = 1, EMail = "developer@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Developer", Password = "12345", Surname = "Kullanıcı", UserRoleID = 0 },
+                        new { ID = 2, CancelID = -1, CancelTime = new DateTime(2018, 9, 2, 23, 51, 57, 595, DateTimeKind.Local), CanceledBy = 1, CreateTime = new DateTime(2018, 9, 2, 23, 51, 57, 595, DateTimeKind.Local), CreatedBy = 1, EMail = "info@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Site", Password = "s21/()d52^43^+!%&", Surname = "Kullanıcı", UserRoleID = -1 },
+                        new { ID = 3, CreateTime = new DateTime(2018, 9, 2, 23, 51, 57, 595, DateTimeKind.Local), CreatedBy = 1, EMail = "admin@harunozer.com", IsLogin = false, LoginCount = 0, Name = "Admin", Password = "12345", Surname = "Kullanıcı", UserRoleID = 1 }
                     );
                 });
 
@@ -356,7 +356,7 @@ namespace DataLayer.Migrations
 
                     b.HasOne("DataLayer.Models.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("CounrtyID")
+                        .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("DataLayer.Models.User", "CreatedUser")

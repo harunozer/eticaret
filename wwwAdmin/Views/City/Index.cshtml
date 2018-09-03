@@ -1,13 +1,13 @@
-﻿@model CountryListModel
+﻿@model CityListModel
 
 @{
-    ViewData["Title"] = "Ülke Listesi";
+    ViewData["Title"] = "Şehir Listesi";
 }
 
 <div>
-    <h2>Ülke Listesi</h2>
+    <h2>Şehir Listesi</h2>
     @if (Model.InsertPermission)
-    {<a asp-controller="Country" asp-action="form">Ülke Ekle</a>}
+    {<a asp-controller="City" asp-action="form">Şehir Ekle</a>}
 </div>
 
 @{Html.RenderPartial("~/Views/Partials/PartialFilter.cshtml", Model.ListProps);}
@@ -21,7 +21,8 @@ else
     <table>
         <tr>
             <th>ID <span class="orderspan" colname="ID">X</span></th>
-            <th>Ülke Adı <span class="orderspan" colname="CountryName">X</span></th>
+            <th>Ülke Adı <span class="orderspan" colname="CountryID">X</span></th>
+            <th>Şehir Adı <span class="orderspan" colname="CityName">X</span></th>
             <th>İptal Nedeni</th>
             <th>&nbsp;</th>
         </tr>
@@ -29,7 +30,8 @@ else
         {
             <tr>
                 <td>@data.ID</td>
-                <td>@data.CountryName</td>
+                <td>@data.Country.CountryName</td>
+                <td>@data.CityName</td>
                 <td>@(data.Cancel != null ? data.Cancel.CancelName : "")</td>
                 <td>
                     @if (data.Permissions.Update)

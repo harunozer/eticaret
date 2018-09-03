@@ -34,6 +34,7 @@ namespace wwwAdmin
             services.AddScoped<UserService>();
             services.AddScoped<CustomerService>();
             services.AddScoped<CountryService>();
+            services.AddScoped<CityService>();
 
             services.AddMvc();
             services.AddRouting();
